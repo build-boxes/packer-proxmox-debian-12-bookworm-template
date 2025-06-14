@@ -6,3 +6,6 @@ crash.log
 
 # For built boxes
 *.box
+
+# Hammad custom
+**/debian12-hammad.pkrvars.*

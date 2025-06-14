@@ -5,7 +5,7 @@ variable "iso_file" {
 
 variable "iso_url" {
   type    = string
-  default = "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-11.6.0-amd64-netinst.iso"
+  default = "https://cdimage.debian.org/debian-cd/12.11.0/amd64/iso-cd/debian-12.11.0-amd64-netinst.iso"
 }
 
 variable "iso_storage_pool" {
@@ -15,7 +15,7 @@ variable "iso_storage_pool" {
 
 variable "iso_checksum" {
   type    = string
-  default = "sha512:224cd98011b9184e49f858a46096c6ff4894adff8945ce89b194541afdfd93b73b4666b0705234bd4dff42c0a914fdb6037dd0982efb5813e8a553d8e92e6f51"
+  default = "sha512:0921d8b297c63ac458d8a06f87cd4c353f751eb5fe30fd0d839ca09c0833d1d9934b02ee14bbd0c0ec4f8917dde793957801ae1af3c8122cdf28dde8f3c3e0da"
 }
 
 variable "vm_name" {
@@ -83,4 +83,16 @@ variable "proxmox_host" {
 variable "proxmox_node" {
   type    = string
   default = ""
+}
+
+#No practical use of 'debian_root_password', since it is hard coded in pressed cfg.
+variable "debian_root_password" {
+  type      = string
+  sensitive = true
+  default   = "packer"
+}
+
+variable "preseed_url" {
+  type    = string
+  default = "http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg"
 }

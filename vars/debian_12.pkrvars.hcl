@@ -9,6 +9,10 @@ storage_pool      = "local-lvm"
 disk_size         = "16G"
 disk_format       = "raw"
 
-iso_file         = "local:iso/debian-12.2.0-amd64-netinst.iso"
-iso_checksum     = "sha512:4460ef6470f6d8ae193c268e213d33a6a5a0da90c2d30c1024784faa4e4473f0c9b546a41e2d34c43fbbd43542ae4fb93cfd5cb6ac9b88a476f1a6877c478674"
+iso_file         = "local:iso/debian-12.11.0-amd64-netinst.iso"
+iso_checksum     = "sha512:0921d8b297c63ac458d8a06f87cd4c353f751eb5fe30fd0d839ca09c0833d1d9934b02ee14bbd0c0ec4f8917dde793957801ae1af3c8122cdf28dde8f3c3e0da"
 iso_storage_pool = "local:iso"
+
+# it is hard coded in preseed cfg
+debian_root_password = "packer"
+preseed_url = "http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg"

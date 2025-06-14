@@ -7,6 +7,7 @@ source "proxmox-iso" "debian-12" {
 
   vm_name                 = var.vm_name
   template_description    = "Debian 12 Bullseye Packer Template -- Created: ${formatdate("YYYY-MM-DD hh:mm:ss ZZZ", timestamp())}"
+  tags                    = "template;debian;debian12;bookworm;desktop;kde;kde-palsma;docker"
   vm_id                   = var.vmid
   os                      = "l26"
   cpu_type                = var.cpu_type
@@ -43,9 +44,10 @@ source "proxmox-iso" "debian-12" {
   http_port_min  = 8100
   http_port_max  = 8100
   boot_wait      = "10s"
-  boot_command   = ["<esc><wait>auto url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg<enter>"]
+  #boot_command   = ["<esc><wait>auto url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg<enter>"]
+  boot_command   = ["<esc><wait>auto url=${var.preseed_url}<enter>"]
 
   ssh_username = "root"
-  ssh_password = "packer"
+  ssh_password = var.debian_root_password
   ssh_timeout  = "60m"
 }
