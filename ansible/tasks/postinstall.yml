@@ -14,6 +14,7 @@
   become_flags: "su -c"
   ansible.builtin.shell:
     cmd: >
+      /usr/bin/apt install -y xrdp dbus-x11;
       /usr/bin/rm /etc/xrdp/cert.pem /etc/xrdp/key.pem;
       /usr/bin/openssl req -new -newkey rsa:4096 -x509
       -sha256 -days 3650 -nodes

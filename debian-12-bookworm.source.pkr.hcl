@@ -35,10 +35,12 @@ source "proxmox-iso" "debian-12" {
     type              = "scsi"
   }
 
-  iso_file       = var.iso_file
-  iso_storage_pool = var.iso_storage_pool
-  #iso_checksum     = var.iso_checksum
-  unmount_iso      = true
+  boot_iso {
+    iso_file          = var.iso_file
+    iso_storage_pool  = var.iso_storage_pool
+    iso_checksum      = var.iso_checksum
+    unmount           = true
+  }
 
   http_directory = "http"
   http_port_min  = 8100
