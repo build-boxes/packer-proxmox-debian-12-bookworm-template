@@ -1,0 +1,25 @@
+---
+- name: Add flatpak repo
+  become: true
+  become_method: sudo
+  become_flags: "su -c"
+  ansible.builtin.shell:
+    cmd: >
+      /usr/bin/flatpak remote-add --if-not-exists
+      flathub https://dl.flathub.org/repo/flathub.flatpakrepo;
+
+- name: Setup up self signed Certifictae for xRDP Server
+  become: true
+  become_method: sudo
+  become_flags: "su -c"
+  ansible.builtin.shell:
+    cmd: >
+      /usr/bin/rm /etc/xrdp/cert.pem /etc/xrdp/key.pem;
+      /usr/bin/openssl req -new -newkey rsa:4096 -x509
+      -sha256 -days 3650 -nodes
+      -out /etc/xrdp/cert.pem
+      -keyout /etc/xrdp/key.pem
+      -subj "/C=CA/ST=Ontario/L=Toronto/O=Debian/CN=hexword.ca";
+      /usr/bin/chown root:xrdp /etc/xrdp/key.pem;
+      /usr/bin/chmod 440 /etc/xrdp/key.pem;
+      /usr/bin/systemctl enable xrdp;

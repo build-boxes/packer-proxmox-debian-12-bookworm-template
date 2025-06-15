@@ -7,3 +7,4 @@
   tasks:
     - ansible.builtin.include_tasks: tasks/baseline.yml
     - ansible.builtin.include_tasks: tasks/docker.yml
+    - ansible.builtin.include_tasks: tasks/postinstall.yml
