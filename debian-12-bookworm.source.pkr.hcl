@@ -51,9 +51,12 @@ source "proxmox-iso" "debian-12" {
   http_directory = "http"
   http_port_min  = 8100
   http_port_max  = 8100
-  boot_wait      = "10s"
+  #boot_wait      = "10s"
+  boot_wait      = "13s"
   #boot_command   = ["<esc><wait>auto url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg<enter>"]
-  boot_command   = ["<esc><wait>auto url=${var.preseed_url}<enter>"]
+  #boot_command   = ["<esc><wait>auto url=${var.preseed_url}<enter>"]
+  boot_command   = ["<esc><wait><down><down><wait2s><enter><wait4s><down><down><down><down><down><wait2s><enter><wait90s>${var.preseed_url}<wait2s><enter>"]
+  #boot_command   = ["<esc><wait>", "install <wait>", " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>", "debian-installer=en_US.UTF-8 <wait>", "auto <wait>", "locale=en_US.UTF-8 <wait>", "kbd-chooser/method=us <wait>", "keyboard-configuration/xkb-keymap=us <wait>", "netcfg/get_hostname={{ .Name }} <wait>", "netcfg/get_domain=vagrantup.com <wait>", "fb=false <wait>", "debconf/frontend=noninteractive <wait>", "console-setup/ask_detect=false <wait>", "console-keymaps-at/keymap=us <wait>", "grub-installer/bootdev=/dev/sda <wait>", "<enter><wait>"]
 
   ssh_username = "root"
   ssh_password = var.debian_root_password
