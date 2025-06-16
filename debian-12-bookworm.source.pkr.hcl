@@ -15,8 +15,14 @@ source "proxmox-iso" "debian-12" {
   cores                   = var.cores
   memory                  = var.memory
   machine                 = "q35"
-  bios                    = "seabios"
-  scsi_controller         = "virtio-scsi-pci"
+  bios                    = "ovmf"
+  efi_config {
+      efi_storage_pool  = "local-lvm"
+      pre_enrolled_keys = false
+      efi_format        = "raw"
+      efi_type          = "4m"
+  }
+  scsi_controller         = "virtio-scsi-single"
   qemu_agent              = true
   cloud_init              = true
   cloud_init_storage_pool = var.storage_pool
