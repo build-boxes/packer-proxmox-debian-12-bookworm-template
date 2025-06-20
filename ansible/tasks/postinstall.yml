@@ -30,11 +30,10 @@
   become_method: sudo
   become_flags: "su -c"
   ansible.builtin.shell:
-    cmd: >
-      /usr/bin/apt install -y -no-install-recommends
-      chrome-gnome-shell gnome-shell-extension-dashtodock
-      gnome-shell-extension-manager gnome-shell-extensions
-      gnome-shell-extensions-extra gnome-tweaks lua5.4
-      jq imagemagick;
-      /usr/bin/apt install -y gparted gnome-software
-      gnome-disk-utility;
+    cmd: |
+      /usr/bin/apt install -y --no-install-recommends gnome-software \
+      chrome-gnome-shell gnome-shell-extension-dashtodock \
+      gnome-shell-extension-manager gnome-shell-extensions \
+      gnome-shell-extensions-extra gnome-tweaks \
+      mpd lua5.4 jq imagemagick;
+      /usr/bin/apt install -y gparted gnome-disk-utility;
