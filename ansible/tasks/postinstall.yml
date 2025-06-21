@@ -48,5 +48,5 @@
       chrome-gnome-shell gnome-shell-extension-dashtodock \
       gnome-shell-extension-manager gnome-shell-extensions \
       gnome-shell-extensions-extra gnome-tweaks \
-      mpd lua5.4 jq imagemagick;
+      mpd lua5.4 jq imagemagick gnome-software-plugin-flatpak;
       /usr/bin/apt install -y gparted gnome-disk-utility;
